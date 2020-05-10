@@ -1,0 +1,111 @@
+<h2 style="text-align: center;">Recipe Form</h2>
+<hr>
+<div class="row">
+  <div class="col-xs-12">
+    <form [formGroup]="recipeForm" (ngSubmit)="onSubmit()">
+      <div class="row">
+        <div class="col-xs-12">
+          <div class="form-group">
+            <label style="font-family:cursive;font-size: large;" for="name">Name</label>
+            <input
+              type="text"
+              id="name"
+              formControlName="name"
+              style="font-weight:300;background-color: rgb(250, 244, 158);
+              color: rgba(3, 2, 2, 0.993);"
+              class="form-control">
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xs-12">
+          <div class="form-group">
+            <label style="font-family:cursive;font-size: large;" for="imagePath">Image URL</label>
+            <input
+              type="text"
+              id="imagePath"
+              formControlName="imagePath"
+              style="font-weight:300;background-color: rgb(250, 244, 158);
+              color: rgba(3, 2, 2, 0.993);"
+              class="form-control"
+              #imagePath>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xs-12">
+          <img [src]="imagePath.value" class="img-responsive">
+        </div>
+      </div><br>
+      <div class="row">
+        <div class="col-xs-12">
+          <div style="font-family:cursive;font-size: large;" class="form-group">
+            <label for="description">Description</label>
+            <textarea
+              type="text"
+              id="description"
+              style="font-weight:300;background-color: rgb(250, 244, 158);
+              color: rgba(3, 2, 2, 0.993);"
+              class="form-control"
+              formControlName="description"
+              rows="6"></textarea>
+          </div>
+        </div>
+      </div>
+
+      <strong style="font-family:cursive;font-size: large;">Ingredients</strong>
+      
+      <div class="row">
+        <div class="col-xs-12">
+          <button
+            type="button"
+            class="btn btn-success"
+            (click)="onAddIngredient()">Add Ingredient</button>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xs-12" formArrayName="ingredients">
+          <div
+            class="row"
+            *ngFor="let ingredientCtrl of recipeForm.get('ingredients').controls; let i = index"
+            [formGroupName]="i"
+            style="margin-top: 10px;">
+            <div class="col-xs-5">
+              <input
+                type="text"
+                style="font-weight:300;background-color: rgb(250, 244, 158);
+                color: rgba(3, 2, 2, 0.993);"
+                class="form-control"
+                formControlName="name" placeholder="Ingredient Name">
+            </div>
+            <div class="col-xs-5">
+              <input
+                type="text"
+                style="font-weight:300;background-color: rgb(250, 244, 158);
+                color: rgba(3, 2, 2, 0.993);"
+                class="form-control"
+                formControlName="amount" placeholder="Quantity">
+            </div>
+            <div class="col-xs-2">
+              <button
+                type="button"
+                class="btn btn-danger"
+                (click)="onDeleteIngredient(i)">X</button>
+            </div>
+          </div>
+          <hr>
+          
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xs-12">
+          <button
+            type="submit"
+            class="btn btn-primary"
+            [disabled]="!recipeForm.valid">{{ editMode ? 'Update Recipe':'Add Recipe'}}</button>
+          <button type="button" class="btn btn-danger" (click)="onCancel()">Cancel Recipe</button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

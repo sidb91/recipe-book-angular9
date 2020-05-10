@@ -1,20 +1,36 @@
-<nav class="navbar navbar-default">
+<nav class="navbar navbar-inverse" role="navigation" style="background-color: #563d7c;">
   <div class="container-fluid">
     <div class="navbar-header">
-      <a href="#" class="navbar-brand">Recipe Book</a>
+      <button
+        type="button"
+        class="navbar-toggle"
+        (click)="collapsed = !collapsed"
+      >
+        <span class="icon-bar" *ngFor="let iconBar of [1, 2, 3]"></span>
+      </button>
+      <a routerLink="/" class="navbar-brand" style="color:chartreuse">Hangla'r Faurdou</a>
     </div>
-
-    <div class="collapse navbar-collapse">
+    <div
+      class="navbar-collapse"
+      [class.collapse]="collapsed"
+      (window:resize)="collapsed = true"
+    >
       <ul class="nav navbar-nav">
-        <li><a href="#" (click)="onSelect('recipe')">Recipes</a></li>
-        <li><a href="#" (click)="onSelect('shopping-list')">Shopping List</a></li>
+        <li routerLinkActive="active"><a routerLink="/recipes" 
+          style="color:antiquewhite">Recipes</a></li>
+        <li routerLinkActive="active">
+          <a routerLink="/shopping-list"
+          style="color:antiquewhite">Shopping List</a>
+        </li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
-        <li class="dropdown" appDropdown>
-          <a href="#" class="dropdown-toggle" role="button">Manage <span class="caret"></span></a>
+        <li class="dropdown" appDropDown>
+          <a style="cursor: pointer;" class="dropdown-toggle" role="button"
+          style="color:antiquewhite">Manage <span class="caret"></span
+          ></a>
           <ul class="dropdown-menu">
-            <li><a href="#">Save Data</a></li>
-            <li><a href="#">Fetch Data</a></li>
+            <li><a style="cursor: pointer;" (click)="onSaveData()">Save Data</a></li>
+            <li><a style="cursor: pointer;">Fetch Data</a></li>
           </ul>
         </li>
       </ul>

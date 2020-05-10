@@ -1,4 +1,8 @@
-<a href="#" class="list-group-item clearfix" (click)="onRecipeSelect()">
+<a 
+  [routerLink]="index"
+  routerLinkActive="active"
+  style="cursor:pointer;font-size: large;background-color: rgb(250, 244, 158);
+  color: rgba(3, 2, 2, 0.993);" class="list-group-item clearfix">
   <div class="pull-left">
     <h3 class="list-group-item-heading">{{ recipe.name }}</h3>
     <!-- <p class="list-group-item-text">{{ recipe.description }}</p> -->
